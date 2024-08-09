@@ -81,14 +81,14 @@ class Geolocation
         $response = curl_exec($curl);
 
         // fetch errors
-        $errorNumber = curl_errno($curl);
+        $errorNumber = (int) curl_errno($curl);
         $errorMessage = curl_error($curl);
 
         // close curl
         curl_close($curl);
 
         // we have errors
-        if ($errorNumber != '') {
+        if ($errorNumber > 0) {
             throw new Exception($errorMessage);
         }
 
